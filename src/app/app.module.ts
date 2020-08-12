@@ -13,6 +13,7 @@ import { TodoHttpService } from './services/todo-http.service';
 import { StoreModule } from '@ngrx/store';
 import * as todosReducer from './store/todo.reducer';
 import { TodosEffects } from './store/todos.effects';
+import { TodoHelpers } from './services/todo.helpers';
 
 @NgModule({
   declarations: [AppComponent, TodoListComponent, TodoOverviewComponent],
@@ -23,7 +24,7 @@ import { TodosEffects } from './store/todos.effects';
     StoreModule.forRoot({ todos: todosReducer.todoReducer }),
     EffectsModule.forRoot([TodosEffects]),
   ],
-  providers: [TodoListProviderService, TodoHttpService],
+  providers: [TodoListProviderService, TodoHttpService, TodoHelpers],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

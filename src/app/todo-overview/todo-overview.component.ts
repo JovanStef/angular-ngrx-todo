@@ -1,18 +1,37 @@
-import { Observable, Subject } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
-import { TodoListProviderService } from '../services/todo-list-provider.service';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { todosState } from '../store/todo.reducer';
+import { Store } from '@ngrx/store';
+import { removeAllTodosSuccess } from '../store/todo.actions';
 
 @Component({
   selector: 'app-todo-overview',
   templateUrl: './todo-overview.component.html',
   styleUrls: ['./todo-overview.component.css'],
 })
-export class TodoOverviewComponent implements OnInit {
-  // todos = this._todoListProviderService.getTodos();
-  // lastUpdate = this.todos.length;
-  constructor(private _todoListProviderService: TodoListProviderService) {}
+export class TodoOverviewComponent implements OnInit, OnDestroy {
+  private _subscription: Subscription;
 
-  ngOnInit(): void {}
+  todos$: Observable<todosState>;
+  numberOfTodos: number = 0;
+  dateModified: Date = null;
 
-  clearTodos() {}
+  constructor(private store: Store<{ todos: todosState }>) {
+    this.todos$ = this.store.select((state) => state.todos);
+  }
+
+  ngOnInit(): void {
+    this._subscription = this.todos$.subscribe((data: todosState) => {
+      this.numberOfTodos = data.todos.length;
+      this.dateModified = data.dateModified;
+      console.log(data);
+    });
+  }
+
+  clearTodos() {
+    this.store.dispatch(removeAllTodosSuccess());
+  }
+  ngOnDestroy() {
+    this._subscription.unsubscribe();
+  }
 }

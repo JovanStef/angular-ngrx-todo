@@ -1,21 +1,20 @@
-import { loadTodos } from './../store/todo.actions';
-import { removeTodo } from './../services/todo.helpers';
+import { NgForm } from '@angular/forms';
+import { loadTodos, addTodo, removeTodo } from './../store/todo.actions';
 import { ITodo } from '../models/todo.model';
-import { Component, OnInit } from '@angular/core';
-import { addTodo } from '../services/todo.helpers';
-import { TodoListProviderService } from '../services/todo-list-provider.service';
-import { Observable, Subject } from 'rxjs';
-import { TodoHttpService } from '../services/todo-http.service';
-import { tap } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { TodoHelpers } from '../services/todo.helpers';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { todosState } from '../store/todo.reducer';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css'],
 })
-export class TodoListComponent implements OnInit {
-  todos$: Observable<ITodo[]> = this.store.select((state) => state.todos);
+export class TodoListComponent implements OnInit, OnDestroy {
+  private _subscription: Subscription;
+  todos$: Observable<todosState>;
   loading = true;
   todo: ITodo = {
     id: 0,
@@ -27,30 +26,33 @@ export class TodoListComponent implements OnInit {
   todos: ITodo[] = [];
 
   constructor(
-    private todoLoader: TodoHttpService,
-    private store: Store<{ todos: ITodo[] }>
-  ) {}
+    private store: Store<{ todos: todosState }>,
+    private todoHelpers: TodoHelpers
+  ) {
+    this.todos$ = this.store.select((state) => {
+      return state.todos;
+    });
+  }
 
   ngOnInit(): void {
     this.store.dispatch(loadTodos());
-    this.todos$.subscribe((data: ITodo[]) => {
-      console.log(data);
-      this.todos = [...data];
+    this._subscription = this.todos$.subscribe((data: todosState) => {
+      this.todos = data.todos;
       this.loading = false;
     });
-    // this.todoLoader.getTodosJSON().subscribe((data: ITodo[]) => {
-    //   this.todos = [...data];
-    //   this.loading = false;
-    // });
   }
-  onSubmit(todo) {
-    addTodo(todo, this.todos);
+  onSubmit(form: NgForm) {
+    let todo = this.todoHelpers.formatTodo(form.value, this.todos);
+    this.store.dispatch(addTodo(todo));
   }
 
   toggleTodo(todo) {}
 
-  removeTodo(todo) {
-    this.todos = removeTodo(todo, this.todos);
-    // this.todos = this._todoListProviderService.todos;
+  deleteTodo(todo) {
+    this.store.dispatch(removeTodo(todo));
+  }
+
+  ngOnDestroy() {
+    this._subscription.unsubscribe();
   }
 }

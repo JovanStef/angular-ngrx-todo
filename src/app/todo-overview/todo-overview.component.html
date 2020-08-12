@@ -1,5 +1,8 @@
-<!-- <p class="text-write">
-  <span class="badge badge-secondary">Items: {{ lastUpdate }} </span>
+<p class="text-write">
+  <span class="badge badge-secondary"
+    >Last Update: {{ dateModified | date: "medium" }} | Todos:
+    {{ numberOfTodos }}
+  </span>
 </p>
 
-<button class="btn btn-primary" (click)="clearTodos()">Delete All</button> -->
+<button class="btn btn-primary" (click)="clearTodos()">Delete All</button>
