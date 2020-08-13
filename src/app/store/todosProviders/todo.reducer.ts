@@ -1,4 +1,3 @@
-import { ITodo } from '../todos/models/todo.model';
 import {
   loadTodos,
   addTodoSuccess,
@@ -11,17 +10,8 @@ import {
   removeAllTodosSuccess,
 } from './todo.actions';
 import { Action, createReducer, on } from '@ngrx/store';
-import { TodoHelpers } from '../todos/services/todo.helpers';
-
-export interface appState {
-  todos: ITodo[];
-  dateModified: Date;
-}
-
-export const initalState: appState = {
-  todos: [],
-  dateModified: new Date(),
-};
+import { TodoHelpers } from '../../todos/services/todo.helpers';
+import { appState, initalState } from '../appState';
 
 const tHelper = new TodoHelpers();
 

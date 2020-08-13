@@ -1,8 +1,8 @@
 import { Observable, Subject, Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { appState } from '../../store/todo.reducer';
+import { appState } from '../../store/appState';
 import { Store } from '@ngrx/store';
-import { removeAllTodosSuccess } from '../../store/todo.actions';
+import { removeAllTodosSuccess } from '../../store/todosProviders/todo.actions';
 
 @Component({
   selector: 'app-todo-overview',
@@ -24,7 +24,6 @@ export class TodoOverviewComponent implements OnInit, OnDestroy {
     this._subscription = this.todos$.subscribe((data: appState) => {
       this.numberOfTodos = data.todos.length;
       this.dateModified = data.dateModified;
-      console.log(data);
     });
   }
 

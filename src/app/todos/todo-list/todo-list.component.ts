@@ -1,11 +1,15 @@
 import { NgForm } from '@angular/forms';
-import { loadTodos, addTodo, removeTodo } from '../../store/todo.actions';
+import {
+  loadTodos,
+  addTodo,
+  removeTodo,
+} from '../../store/todosProviders/todo.actions';
 import { ITodo } from '../models/todo.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TodoHelpers } from '../services/todo.helpers';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { appState } from '../../store/todo.reducer';
+import { appState } from '../../store/appState';
 
 @Component({
   selector: 'app-todo-list',

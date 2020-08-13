@@ -1,0 +1,26 @@
+<div class="card" style="width: 18rem;">
+  <img
+    class="card-img-top"
+    src="https://voxpopulii.in/system/static/dashboard/img/default_user.png"
+    alt="Card image cap"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ user.name }}</h5>
+    <p class="card-text">
+      {{ user.username }} | <span>{{ user.email }}</span>
+    </p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <app-adress [address]="user.adress"></app-adress>
+    </li>
+    <li class="list-group-item">
+      <app-company [company]="user.company"></app-company>
+    </li>
+    <li class="list-group-item"><app-geo [geo]="user.adress.geo"></app-geo></li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">{{ user.phone }}</a>
+    <a href="#" class="card-link">{{ user.website }}</a>
+  </div>
+</div>

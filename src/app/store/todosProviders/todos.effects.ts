@@ -10,14 +10,15 @@ import {
   removeAllTodos,
   removeAllTodosSuccess,
 } from './todo.actions';
-import { ITodo } from '../todos/models/todo.model';
+import { ITodo } from '../../todos/models/todo.model';
 import { Injectable } from '@angular/core';
-import { TodoHttpService } from '../todos/services/todo-http.service';
+import { TodoHttpService } from '../../todos/services/todo-http.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { mergeMap, catchError, map, switchMap } from 'rxjs/operators';
 import { EMPTY, Observable, from } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { TodoHelpers } from '../todos/services/todo.helpers';
+import { TodoHelpers } from '../../todos/services/todo.helpers';
+
 @Injectable()
 export class TodosEffects {
   loadTodos$: Observable<Action> = createEffect(() =>
