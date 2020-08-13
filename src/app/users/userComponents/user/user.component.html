@@ -12,12 +12,14 @@
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
-      <app-adress [address]="user.adress"></app-adress>
+      <app-adress [address]="addressUser"></app-adress>
     </li>
     <li class="list-group-item">
-      <app-company [company]="user.company"></app-company>
+      <app-company [company]="companyUser"></app-company>
     </li>
-    <li class="list-group-item"><app-geo [geo]="user.adress.geo"></app-geo></li>
+    <li class="list-group-item">
+      <app-geo [geo]="geoUser"></app-geo>
+    </li>
   </ul>
   <div class="card-body">
     <a href="#" class="card-link">{{ user.phone }}</a>

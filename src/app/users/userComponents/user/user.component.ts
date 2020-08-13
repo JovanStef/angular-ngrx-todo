@@ -1,7 +1,9 @@
 import { IUser } from './../../models/users.model';
 import { IAdress } from './../../models/adress.model';
-import { Component, OnInit, Input } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { ICompany } from '../../models/company.model';
+import { IGeo } from '../../models/geo.model';
 
 @Component({
   selector: 'app-user',
@@ -9,21 +11,19 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
-  private _data = new BehaviorSubject<any>([]);
+  @Input() user: IUser;
 
-  @Input()
-  setData(value) {
-    this._data.next(value);
-  }
+  addressUser: IAdress;
+  companyUser: ICompany;
+  geoUser: IGeo;
 
-  getData() {
-    return this._data.getValue();
-  }
-
-  ngOnInit() {
-    this._data.subscribe((x) => {
-      console.log(x);
-    });
+  ngOnInit() {}
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['user']) {
+      this.addressUser = this.user.address;
+      this.companyUser = this.user.company;
+      this.geoUser = this.user.address.geo;
+    }
   }
 
   constructor() {}

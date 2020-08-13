@@ -1,12 +1,12 @@
 import { IAdress } from './adress.model';
-import {ICompany} from './company.model';
+import { ICompany } from './company.model';
 
 export interface IUser {
   id: number;
-  username:string;
+  username: string;
   name: string;
   email: string;
-  adress: IAdress;
+  address: IAdress;
   phone: number;
   website: string;
   company: ICompany;
