@@ -1,11 +1,11 @@
 import { NgForm } from '@angular/forms';
-import { loadTodos, addTodo, removeTodo } from './../store/todo.actions';
+import { loadTodos, addTodo, removeTodo } from '../../store/todo.actions';
 import { ITodo } from '../models/todo.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TodoHelpers } from '../services/todo.helpers';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { todosState } from '../store/todo.reducer';
+import { appState } from '../../store/todo.reducer';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,7 +14,7 @@ import { todosState } from '../store/todo.reducer';
 })
 export class TodoListComponent implements OnInit, OnDestroy {
   private _subscription: Subscription;
-  todos$: Observable<todosState>;
+  todos$: Observable<appState>;
   loading = true;
   todo: ITodo = {
     id: 0,
@@ -26,7 +26,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   todos: ITodo[] = [];
 
   constructor(
-    private store: Store<{ todos: todosState }>,
+    private store: Store<{ todos: appState }>,
     private todoHelpers: TodoHelpers
   ) {
     this.todos$ = this.store.select((state) => {
@@ -36,7 +36,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.store.dispatch(loadTodos());
-    this._subscription = this.todos$.subscribe((data: todosState) => {
+    this._subscription = this.todos$.subscribe((data: appState) => {
       this.todos = data.todos;
       this.loading = false;
     });

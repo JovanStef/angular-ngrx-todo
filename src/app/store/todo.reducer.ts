@@ -1,4 +1,4 @@
-import { ITodo } from '../models/todo.model';
+import { ITodo } from '../todos/models/todo.model';
 import {
   loadTodos,
   addTodoSuccess,
@@ -11,14 +11,14 @@ import {
   removeAllTodosSuccess,
 } from './todo.actions';
 import { Action, createReducer, on } from '@ngrx/store';
-import { TodoHelpers } from '../services/todo.helpers';
+import { TodoHelpers } from '../todos/services/todo.helpers';
 
-export interface todosState {
+export interface appState {
   todos: ITodo[];
   dateModified: Date;
 }
 
-export const initalState: todosState = {
+export const initalState: appState = {
   todos: [],
   dateModified: new Date(),
 };
@@ -61,6 +61,6 @@ const _todoReducer = createReducer(
   })
 );
 
-export function todoReducer(state: todosState | undefined, action: Action) {
+export function todoReducer(state: appState | undefined, action: Action) {
   return _todoReducer(state, action);
 }
