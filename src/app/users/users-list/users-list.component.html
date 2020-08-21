@@ -1,3 +1,4 @@
+<app-create-user (newUser)="addNewUser($event)"></app-create-user>
 <div class="d-flex" *ngFor="let user of users">
   <app-user [user]="user"></app-user>
 </div>

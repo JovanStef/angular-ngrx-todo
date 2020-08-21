@@ -34,6 +34,10 @@ export class UsersListComponent implements OnInit {
     });
   }
 
+  addNewUser(newUser: IUser) {
+    console.log(newUser);
+  }
+
   ngOnDestroy() {
     this._subscription.unsubscribe();
   }

@@ -1,0 +1,19 @@
+<h6>Create User</h6>
+<form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+  <div class="form-row">
+    <div class="col-auto">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="username"
+        id="username"
+        [(ngModel)]="user.username"
+        name="username"
+        #username="ngModel"
+      />
+    </div>
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary">Create</button>
+  </div>
+</form>

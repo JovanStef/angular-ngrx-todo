@@ -26,6 +26,7 @@ import { UserComponent } from './users/userComponents/user/user.component';
 import { AdressComponent } from './users/userComponents/adress/adress.component';
 import { GeoComponent } from './users/userComponents/geo/geo.component';
 import { CompanyComponent } from './users/userComponents/company/company.component';
+import { CreateUserComponent } from './users/create-user/create-user.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CompanyComponent } from './users/userComponents/company/company.compone
     AdressComponent,
     GeoComponent,
     CompanyComponent,
+    CreateUserComponent,
   ],
   imports: [
     BrowserModule,
