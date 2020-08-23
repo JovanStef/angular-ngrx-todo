@@ -16,7 +16,7 @@ import * as userReducer from './store/usersProviders/users.reducer';
 import { TodosEffects } from './store/todosProviders/todos.effects';
 import { TodoHelpers } from './todos/services/todo.helpers';
 import { UsersListComponent } from './users/users-list/users-list.component';
-import { AppRoutingModule, routes } from './app-routing./app-routing.module';
+import { AppRoutingModule, routes } from './app-routing/app-routing.module';
 import { TodosContainerComponent } from './todos/todos-container/todos-container.component';
 import { HeaderComponent } from './header/header.component';
 import { UsersHttpService } from './users/services/users-http.service';

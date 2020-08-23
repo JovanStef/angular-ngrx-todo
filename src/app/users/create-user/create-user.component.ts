@@ -1,4 +1,7 @@
-import { NgForm } from '@angular/forms';
+import { IGeo } from './../models/geo.model';
+import { ICompany } from './../models/company.model';
+import { IAdress } from './../models/adress.model';
+import { NgForm, FormsModule } from '@angular/forms';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IUser } from '../models/users.model';
 
@@ -13,10 +16,19 @@ export class CreateUserComponent implements OnInit {
     username: '',
     name: '',
     email: '',
-    address: null,
+    address:<IAdress> {
+      street: null,
+      suite: null,
+      city: null,
+      zipcode: null,
+      geo: <IGeo>{
+        lat:null,
+        lng:null
+      }
+    },
     phone: null,
     website: '',
-    company: null,
+    company: <ICompany>{}
   };
   @Output() newUser = new EventEmitter<IUser>();
   constructor() {}
