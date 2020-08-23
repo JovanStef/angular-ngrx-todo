@@ -4,7 +4,12 @@ import { UsersHttpService } from 'src/app/users/services/users-http.service';
 import { Action } from '@ngrx/store';
 import { Observable, EMPTY } from 'rxjs';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
-import { loadUsers, loadUsersSuccess } from './users.actions';
+import {
+  loadUsers,
+  loadUsersSuccess,
+  addUserSuccess,
+  addUser,
+} from './users.actions';
 
 @Injectable()
 export class UsersEffects {
@@ -16,6 +21,15 @@ export class UsersEffects {
           map((users) => loadUsersSuccess({ users })),
           catchError(() => EMPTY)
         );
+      })
+    );
+  });
+
+  addUser$: Observable<Action> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(addUser),
+      map((user) => {
+        return addUserSuccess(user);
       })
     );
   });

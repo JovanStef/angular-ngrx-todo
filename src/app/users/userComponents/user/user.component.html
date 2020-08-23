@@ -1,7 +1,10 @@
 <div class="card" style="width: 18rem;">
   <img
     class="card-img-top"
-    src="https://voxpopulii.in/system/static/dashboard/img/default_user.png"
+    src="{{
+      user.image ||
+        'https://voxpopulii.in/system/static/dashboard/img/default_user.png'
+    }}"
     alt="Card image cap"
   />
   <div class="card-body">

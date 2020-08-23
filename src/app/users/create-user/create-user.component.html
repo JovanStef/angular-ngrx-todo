@@ -1,42 +1,83 @@
 <h6>Create User</h6>
 <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
   <div class="form-row">
-    <div class="col-auto">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="username"
-        id="username"
-        [(ngModel)]="user.username"
-        name="username"
-        #username="ngModel"
-      />
+    <div class="form-row">
+      <div class="col-auto">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="username"
+          id="username"
+          [(ngModel)]="user.username"
+          name="username"
+          #username="ngModel"
+        />
+      </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="col-auto">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="name"
-        id="name"
-        [(ngModel)]="user.name"
-        name="name"
-        #name="ngModel"
-      />
+    <div class="form-row">
+      <div class="col-auto">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="name"
+          id="name"
+          [(ngModel)]="user.name"
+          name="name"
+          #name="ngModel"
+        />
+      </div>
     </div>
-  </div>
-  <div class="form-row">
-    <div class="col-auto">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="email"
-        id="email"
-        [(ngModel)]="user.email"
-        name="email"
-        #email="ngModel"
-      />
+    <div class="form-row">
+      <div class="col-auto">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="email"
+          id="email"
+          [(ngModel)]="user.email"
+          name="email"
+          #email="ngModel"
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-auto">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="phone"
+          id="phone"
+          [(ngModel)]="user.phone"
+          name="phone"
+          #phone="ngModel"
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-auto">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="website"
+          id="website"
+          [(ngModel)]="user.website"
+          name="website"
+          #website="ngModel"
+        />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-auto">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="image"
+          id="image"
+          [(ngModel)]="user.image"
+          name="image"
+          #image="ngModel"
+        />
+      </div>
     </div>
   </div>
   <!-- address -->
@@ -56,17 +97,17 @@
         />
       </div>
       <div class="form-row">
-      <div class="col-auto">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="suite"
-          id="suite"
-          [(ngModel)]="user.address.suite"
-          name="suite"
-          #suite="ngModel"
-        />
-      </div>
+        <div class="col-auto">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="suite"
+            id="suite"
+            [(ngModel)]="user.address.suite"
+            name="suite"
+            #suite="ngModel"
+          />
+        </div>
       </div>
       <div class="form-row">
         <div class="col-auto">
@@ -80,20 +121,20 @@
             #city="ngModel"
           />
         </div>
+      </div>
+      <div class="form-row">
+        <div class="col-auto">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="zipcode"
+            id="zipcode"
+            [(ngModel)]="user.address.zipcode"
+            name="zipcode"
+            #zipcode="ngModel"
+          />
         </div>
-        <div class="form-row">
-          <div class="col-auto">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="zipcode"
-              id="zipcode"
-              [(ngModel)]="user.address.zipcode"
-              name="zipcode"
-              #zipcode="ngModel"
-            />
-          </div>
-          </div>
+      </div>
     </div>
     <div ngModelGroup="geo">
       <label>Geo</label>
@@ -109,24 +150,69 @@
             #lat="ngModel"
           />
         </div>
+      </div>
+      <div class="form-row">
+        <div class="col-auto">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="lng"
+            id="lng"
+            [(ngModel)]="user.address.geo.lng"
+            name="lng"
+            #lng="ngModel"
+          />
         </div>
-        <div class="form-row">
-          <div class="col-auto">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="lng"
-              id="lng"
-              [(ngModel)]="user.address.geo.lng"
-              name="lng"
-              #lng="ngModel"
-            />
-          </div>
-          </div>
+      </div>
     </div>
   </div>
+  <!-- company -->
+  <div ngModelGroup="company">
+    <label>Company</label>
+
+    <div class="form-row">
+      <div class="col-auto">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="name"
+          id="name"
+          [(ngModel)]="user.company.name"
+          name="name"
+          #name="ngModel"
+        />
+      </div>
+      <div class="form-row">
+        <div class="col-auto">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="catchPhrase"
+            id="catchPhrase"
+            [(ngModel)]="user.company.catchPhrase"
+            name="catchPhrase"
+            #catchPhrase="ngModel"
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-auto">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="bs"
+            id="bs"
+            [(ngModel)]="user.company.bs"
+            name="bs"
+            #bs="ngModel"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="col-auto">
     <button type="submit" class="btn btn-primary">Create</button>
   </div>
 </form>
-<pre>{{userForm.value | json}}</pre>
+<pre>{{ userForm.value | json }}</pre>

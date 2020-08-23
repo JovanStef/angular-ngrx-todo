@@ -1,6 +1,12 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { initalState, appState } from '../appState';
-import { getUsers, loadUsers, loadUsersSuccess } from './users.actions';
+import {
+  getUsers,
+  loadUsers,
+  loadUsersSuccess,
+  addUserSuccess,
+  addUser,
+} from './users.actions';
 const _userReducer = createReducer(
   initalState,
   on(getUsers, (state) => state),
@@ -9,6 +15,12 @@ const _userReducer = createReducer(
     // console.log(users);
     return Object.assign({}, state, {
       users: users.users,
+    });
+  }),
+  on(addUser, (state) => state),
+  on(addUserSuccess, (state, user) => {
+    return Object.assign({}, state, {
+      users: [...state.users, user],
     });
   })
 );

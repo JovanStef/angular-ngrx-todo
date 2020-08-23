@@ -48,4 +48,9 @@ export class UsersHelpersService {
     });
     return users;
   }
+  assignIdUser(user, userArray): IUser {
+    let id = userArray.length == 0 ? 1 : userArray[userArray.length - 1].id + 1;
+    user.id = id;
+    return user;
+  }
 }

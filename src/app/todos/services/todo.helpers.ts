@@ -7,7 +7,7 @@ import { ITodo } from '../models/todo.model';
 export class TodoHelpers {
   addTodo(todo, todoArray) {
     todo.value.id = todoArray.length + 1;
-    todoArray.push(todo.value);
+    // todoArray.push(todo.value);
   }
 
   deleteTodo(todoArray, todo): ITodo[] {

@@ -1,5 +1,6 @@
+import { UsersHelpersService } from './../services/users-helpers.service';
 import { UserComponent } from './../userComponents/user/user.component';
-import { loadUsers } from './../../store/usersProviders/users.actions';
+import { loadUsers, addUser } from './../../store/usersProviders/users.actions';
 import { Subscription, Observable } from 'rxjs';
 import { appState } from './../../store/appState';
 import { Component, OnInit } from '@angular/core';
@@ -17,6 +18,7 @@ export class UsersListComponent implements OnInit {
   users$: Observable<appState>;
   users: IUser[];
   constructor(
+    private usersHelpers: UsersHelpersService,
     private userService: UsersHttpService,
     private store: Store<{ users: appState }>
   ) {
@@ -34,7 +36,9 @@ export class UsersListComponent implements OnInit {
     });
   }
 
-  addNewUser(newUser: IUser) {
+  addNewUser(newUser: any) {
+    newUser = this.usersHelpers.assignIdUser(newUser, this.users);
+    this.store.dispatch(addUser(newUser));
     console.log(newUser);
   }
 
